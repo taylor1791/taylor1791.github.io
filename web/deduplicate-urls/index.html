@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1 id="greeting"></h1>
+    <ol>
+      <li><a href="index.html?name=Bluefish">Bluefish</a></li>
+      <li><a href="index.html?name=Dogfish">Dogfish</a></li>
+    </ol>
+
+    <script type="text/javascript">
+      const name = new URLSearchParams(window.location.search).get('name') || 'World';
+      document.getElementById('greeting').innerHTML = `Hello, ${name}!`;
+    </script>
+  </body>
+</html>
