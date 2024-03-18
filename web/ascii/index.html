@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My First Webpage</title>
+  </head>
+  <body>
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      const code = new URLSearchParams(window.location.search).get('code');
+      document.getElementById('content').innerHTML = code === null || Number.isNaN(+code)
+        ? index() : entry(+code);
+
+
+      function index() {
+        const entries = Array.from({ length: 256 }, (_, i) => `<li><a href="./index.html?code=${i}">${i}</a></li>`);
+
+        return `<div>
+          <h1>ASCII Table</h1>
+          <ul>${entries.join(' ')}</ul>
+        </div>`;
+      }
+
+      function entry(code) {
+        return `<div>
+          <p>In ascii, ${code} is >${String.fromCharCode(code)}<</p>
+          <p>
+            ${(code !== 0 || '') && `Previous: <a href="./index.html?code=${code - 1}">${code - 1}</a>`}
+            ${(code !== 255 || '') && `Next: <a href="./index.html?code=${code + 1}">${code + 1}</a>`}
+          </p>
+        </div>`;
+      }
+    </script>
+  </body>
+</html>
