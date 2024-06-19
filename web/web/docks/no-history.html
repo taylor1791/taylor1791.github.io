@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Selector</title>
+    <style>
+        body {
+            transition: background-color 150ms, color 150ms;
+        }
+        .light-theme {
+            background-color: white;
+            color: black;
+        }
+        .dark-theme {
+            background-color: black;
+            color: white;
+        }
+        .theme-link {
+            margin: 0 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: blue;
+        }
+        .theme-link.active {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="system-theme">
+    <h1>Theme Selector</h1>
+    <div>
+        <a href="#" class="theme-link" data-theme="light">Light</a>
+        <a href="#" class="theme-link" data-theme="dark">Dark</a>
+        <a href="#" class="theme-link" data-theme="system">System Default</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.theme-link');
+            const setTheme = (theme) => {
+                document.body.classList.remove('light-theme', 'dark-theme', 'system-theme');
+                document.body.classList.add(theme + '-theme');
+                updateURL(theme);
+                updateActiveLink(theme);
+            };
+
+            const updateURL = (theme) => {
+                const url = new URL(window.location);
+                if (theme === 'system') {
+                    url.searchParams.delete('theme');
+                } else {
+                    url.searchParams.set('theme', theme);
+                }
+                // history.replaceState({}, '', url);
+            };
+
+            const getThemeFromURL = () => {
+                const params = new URLSearchParams(window.location.search);
+                return params.get('theme') || 'system';
+            };
+
+            const updateActiveLink = (theme) => {
+                links.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.theme === theme) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            links.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    setTheme(event.target.dataset.theme);
+                });
+            });
+
+            // Set default theme to system
+            const initialTheme = getThemeFromURL();
+            setTheme(initialTheme);
+        });
+    </script>
+</body>
+</html>
