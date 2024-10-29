@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    Open the devtools and check the console.
+
+    <ul>
+      <li><a href="?message=Longleaf%20Ants&n=128&prefix=">128 Longleaf Ants</a></li>
+      <li><a
+        href="?prefix=&message={}&n=10&0=hydrogen&1=helium&2=lithium&3=beryllium&4=boron&5=carbon&6=nigrogen&7=oxygen&8=Fluorine&9=Neon">Periodic Table</a></li>
+    </ul>
+
+
+    <script type="text/javascript">
+      function main() {
+        const query = new URLSearchParams(window.location.search);
+        const message = query.has('message') ? query.get('message') : 'Hello, World!';
+        const prefix = query.has('prefix') ? query.get('prefix') : 'Message {i}: ';
+        const n = query.has('n') ? query.get('n') : 10;
+
+        for (let i = 0; i < n; i++) {
+          const params = { i, ...Object.fromEntries(query) };
+
+          let log = prefix + message;
+          while (log.includes('{')) {
+            log = log.replace(/\{(\w*)\}/g, (match, key) => params[key === "" ? i : key]);
+          }
+
+          console.log(log);
+        }
+      }
+
+      main();
+    </script>
+  </body>
+</html>
+
