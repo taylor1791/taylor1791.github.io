@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My First Webpage</title>
+  </head>
+  <body>
+    <div id="content"></div>
+    <div id="content"></div>
+
+    <script type="text/javascript">
+      const delay = new URLSearchParams(window.location.search).get('delay') || "1000";
+
+      setTimeout(() => {
+        document.getElementById('content').innerHTML = `
+          <div id="actions"><button id="generate">Generate</button></div>
+          <div id="uuid"></div>
+        `;
+        document.getElementById('generate').addEventListener('click', () => {
+          const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+
+          document.getElementById('uuid').textContent = uuid;
+        });
+      }, +delay);
+    </script>
+  </body>
+</html>
