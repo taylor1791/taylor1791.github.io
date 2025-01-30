@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<body>
+  <div id="content"></div>
+
+  <script type="text/javascript">
+    const original = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie');
+    Object.defineProperty(Document.prototype, 'cookie', {
+      configurable: true,
+      enumerable: true,
+      get() {
+        return original.get.call(this);
+      },
+      set(value) {
+        console.log('Intercepting cookie set:', value);
+        original.set.call(this, value);
+      }
+    });
+
+    Object.getOwnPropertyDescriptor(Document.prototype, "cookie").set.call(document, 'hello=world')
+  </script>
+</body>
+
+</html>
+
