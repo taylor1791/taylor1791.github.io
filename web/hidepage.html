@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <script>
+    document.cookie = `visit=${Date.now()}; path=/`;
+    window.addEventListener('pagehide', () => {
+      var durations = [
+        0, 1000, 2000, 2900,
+        3000, 3100, 3150, 3200, 3250, 3300, 3350, 3400, 3450, 3500
+      ];
+      var start = Date.now();
+      document.cookie = `left_00=${Math.random()}; path=/`;
+
+      for (var i = 0; i < durations.length; i++) {
+        while(Date.now() - start < durations[i]) { }
+        document.cookie = `left_${durations[i]}=${Math.random()}; path=/`;
+      }
+    });
+  </script>
+</head>
+
+<body>
+    Hello, World!!
+</body>
+</html>
