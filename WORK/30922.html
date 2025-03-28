@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blob URL Request Example</title>
+</head>
+<body>
+  <script>
+    function sendBlobUrlRequest() {
+      const blob = new Blob(['Example content'], { type: 'text/plain' });
+      const blobUrl = URL.createObjectURL(blob);
+
+      fetch(blobUrl, { method: 'GET', headers: { 'Accept': '*/*' }, referrerPolicy: 'no-referrer-when-downgrade' })
+        .then(response => response.text())
+        .then(text => {
+          console.log('Blob content:', text);
+          URL.revokeObjectURL(blobUrl);
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    setTimeout(sendBlobUrlRequest, 1000);
+  </script>
+</body>
+</html>
