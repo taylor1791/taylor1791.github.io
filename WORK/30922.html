@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blob URL Request Example</title>
+</head>
+<body>
+  <script>
+    var QG = URL.createObjectURL(
+      new Blob(
+        [`self.postMessage("hello");`],
+        { type: "application/javascript" },
+      ),
+    );
+
+    const w = new Worker(QG);
+    w.onmessage = (e) => console.log('Worker says:', e.data);
+  </script>
+</body>
+</html>
