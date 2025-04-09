@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <script>
+    localStorage.setItem('index.html', 'true');
+  </script>
+
+  <script src="src1.js"></script>
+  <script src="http://kitchensink.computer:8080/src1.js"></script>
+  <script src="http://kitchensink3rdparty.computer:8080/src2.js"></script>
+</head>
+
+<body>
+
+  <script>
+    console.log(JSON.stringify(localStorage));
+  </script>
+</body>
+</html>
