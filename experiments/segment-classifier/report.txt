@@ -1,0 +1,231 @@
+[taylor1791@korolev:~/works/32.20.path-wildcard-inference/00-trainer]$ ./bin/train.py
+Using features: ['length', 'uniqueCharacterRatio', 'percentLetters', 'percentDigits', 'percentSpecial', 'normalizedEntropy', 'strengthEntropy', 'longestDigitRun', 'longestLetterRun', 'longestSymbolRun', 'longestAlphanumericRun']
+🔍 Checking for NaNs in features...
+
+
+📊 Accuracy: 0.9478390461997019
+
+🧾 Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.94      0.86      0.90       892
+           1       0.95      0.98      0.96      2463
+
+    accuracy                           0.95      3355
+   macro avg       0.94      0.92      0.93      3355
+weighted avg       0.95      0.95      0.95      3355
+
+🧮 Intercept: -0.16350233176470566
+length                    0.0696
+uniqueCharacterRatio      5.2693
+percentLetters            -1.9537
+percentDigits             2.8882
+percentSpecial            2.1086
+normalizedEntropy         0.9123
+strengthEntropy           0.2770
+longestDigitRun           2.6301
+longestLetterRun          -4.6612
+longestSymbolRun          4.7226
+longestAlphanumericRun    -2.4776
+
+🔮 Predictions on 25 random examples:
+
+✅ dynamic  (1) | p(dynamic): 0.987 | https://spie.org/photonics-west/presentation/graphene-assisted-iii-v-epitaxy-towards-substrate-recycling/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/3041820/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/3056018/
+✅ static   (0) | p(dynamic): 0.013 | https://spie.org/conferences-and-exhibitions/defense-and-commercial-sensing/presenters/
+✅ dynamic  (1) | p(dynamic): 0.924 | https://www.spie.org/news/photonics-focus/marchapril-2025/searching-for-new-earths-with-mems/
+❌ dynamic  (1) | p(dynamic): 0.682 | https://www.spie.org/conferences-and-exhibitions/photonics-europe/presenters/prepare-to-present/
+✅ dynamic  (1) | p(dynamic): 0.988 | https://spie.org/photonics-west/presentation/imaging-local-optic-axis-of-multilayered-tissue-using-jones-matrix/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/dcs/myschedule/add/103159/
+✅ static   (0) | p(dynamic): 0.013 | https://spie.org/conferences-and-exhibitions/photonics-west/exhibitions/vision-tech-expo/sponsors/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/photonics-west/presentation/photonic-computation-mediated-by-sound-waves/13375-28/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/pw/myschedule/add/3041805/presentation/
+✅ dynamic  (1) | p(dynamic): 0.994 | https://spie.org/medical-imaging/presentation/interpretable-deep-learning-model-for-distinguishing-tumor-pseudoprogression-from-true/
+✅ dynamic  (1) | p(dynamic): 0.929 | https://spie.org/news/spie-fellows-lunch-at-photonics-west/
+✅ dynamic  (1) | p(dynamic): 0.912 | https://www.spie.org/news/photonics-focus/marchapril-2025/shining-bright-with-vcsels/
+✅ dynamic  (1) | p(dynamic): 0.989 | https://www.spie.org/courses/sc160/an-introduction-to-precision-stabilized-pointing-and-tracking-systems/
+✅ static   (0) | p(dynamic): 0.065 | https://spie.org/dcs/myschedule/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/pw/myschedule/add/3043993/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/medical-imaging/event/nichart-software-platform-demonstration/7100677/
+✅ dynamic  (1) | p(dynamic): 0.801 | https://spie.org/about-spie/equity-diversity-inclusion/women-in-optics/2010-wio-planner/lahmar-souad/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/photonics-west/presentation/mol2raman--a-graph-neural-network-approach-for-the-prediction/13375-81/
+✅ dynamic  (1) | p(dynamic): 0.990 | https://www.spie.org/ar-vr-mr/presentation/contact-lens-with-moiré-labels-for-precise-eye-tracking/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/mi/myschedule/add/3051724/presentation/
+✅ dynamic  (1) | p(dynamic): 0.668 | https://spie.org/pw25b/conferencedetails/adaptive-optics/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/pw/myschedule/add/3050498/presentation/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/dcs/myschedule/add/3059428/
+
+[taylor1791@korolev:~/works/32.20.path-wildcard-inference/00-trainer]$ ./bin/train.py
+Using features: ['length', 'uniqueCharacterRatio', 'percentLetters', 'percentDigits', 'percentSpecial', 'normalizedEntropy', 'strengthEntropy', 'longestDigitRun', 'longestLetterRun', 'longestSymbolRun', 'longestAlphanumericRun']
+🔍 Checking for NaNs in features...
+
+
+📊 Accuracy: 0.9478390461997019
+
+🧾 Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.94      0.86      0.90       892
+           1       0.95      0.98      0.96      2463
+
+    accuracy                           0.95      3355
+   macro avg       0.94      0.92      0.93      3355
+weighted avg       0.95      0.95      0.95      3355
+
+🧮 Intercept: -0.16350233176470566
+length                    0.0696
+uniqueCharacterRatio      5.2693
+percentLetters            -1.9537
+percentDigits             2.8882
+percentSpecial            2.1086
+normalizedEntropy         0.9123
+strengthEntropy           0.2770
+longestDigitRun           2.6301
+longestLetterRun          -4.6612
+longestSymbolRun          4.7226
+longestAlphanumericRun    -2.4776
+
+🔮 Predictions on 25 random examples:
+
+✅ static   (0) | p(dynamic): 0.058 | https://spie.org/ofb/myschedule/add/103428/exhibitor/
+❌ static   (0) | p(dynamic): 0.350 | https://spie.org/about-spie/equity-diversity-inclusion/women-in-optics/2022-wio-planner/cvic-innocent/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/101357/
+✅ dynamic  (1) | p(dynamic): 0.842 | https://spie.org/dcs25/conferencedetails/infrared-imaging-systems/
+✅ static   (0) | p(dynamic): 0.019 | https://spie.org/publications/book/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/dcs/myschedule/add/3059217/presentation/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/pw/myschedule/add/3043412/presentation/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/3040171/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/pw/myschedule/add/3042238/presentation/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/photonics-west/presentation/non-volatile-photonic-hybrid-optical-switch-with-integrated-phase-change/13375-18/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://www.spie.org/pw/myschedule/add/7100497/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/mi/myschedule/add/3048789/presentation/
+✅ dynamic  (1) | p(dynamic): 0.996 | https://spie.org/photonics-west/presentation/flexible-electrochemiluminescence-patch-with-carbon-nanotube-electrode-and-bacterial-nanocellulose/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/photonics-west/presentation/widely-tunable-pulsed-tm-yap-laser-based-on-an-active/13341-4/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/pw/myschedule/add/3043848/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/dcs/myschedule/add/3059152/presentation/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/photonics-west/presentation/4d-monitoring-of-bacterial-biofilm-growth-at-the-air-liquid/13318-7/
+✅ static   (0) | p(dynamic): 0.043 | https://www.spie.org/community-support/education-outreach-resources/posters/
+✅ dynamic  (1) | p(dynamic): 0.976 | https://spie.org/defense-commercial-sensing/presentation/an-evaluation-of-chernoff-fusion-with-fibonacci-points/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/pw/myschedule/add/3043138/presentation/
+✅ static   (0) | p(dynamic): 0.058 | https://spie.org/pw/myschedule/add/104544/exhibitor/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/3042951/
+✅ dynamic  (1) | p(dynamic): 0.725 | https://www.spie.org/news/photonics-focus/mayjune-2024/hunting-asteroids/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/pw/myschedule/add/3041077/presentation/
+✅ static   (0) | p(dynamic): 0.058 | https://spie.org/pw/myschedule/add/101965/exhibitor/
+
+[taylor1791@korolev:~/works/32.20.path-wildcard-inference/00-trainer]$ ./bin/train.py
+Using features: ['length', 'uniqueCharacterRatio', 'percentLetters', 'percentDigits', 'percentSpecial', 'normalizedEntropy', 'strengthEntropy', 'longestDigitRun', 'longestLetterRun', 'longestSymbolRun', 'longestAlphanumericRun']
+🔍 Checking for NaNs in features...
+
+
+📊 Accuracy: 0.9478390461997019
+
+🧾 Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.94      0.86      0.90       892
+           1       0.95      0.98      0.96      2463
+
+    accuracy                           0.95      3355
+   macro avg       0.94      0.92      0.93      3355
+weighted avg       0.95      0.95      0.95      3355
+
+🧮 Intercept: -0.16350233176470566
+length                    0.0696
+uniqueCharacterRatio      5.2693
+percentLetters            -1.9537
+percentDigits             2.8882
+percentSpecial            2.1086
+normalizedEntropy         0.9123
+strengthEntropy           0.2770
+longestDigitRun           2.6301
+longestLetterRun          -4.6612
+longestSymbolRun          4.7226
+longestAlphanumericRun    -2.4776
+
+🔮 Predictions on 25 random examples:
+
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/medical-imaging/presentation/covseg-vlm--vision-language-model-for-reliable-segmenting-covid/13407-107/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/photonics-west/event/lase-and-select-bios-poster-session-tuesday/7100451/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/3043882/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/mi/myschedule/add/3047248/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://www.spie.org/pw/myschedule/add/7100481/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/medical-imaging/presentation/automated-hepatocellular-carcinoma-detection-and-segmentation-in-abbreviated-mri-using/13407-66/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/dcs/myschedule/add/3057421/presentation/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/photonics-west/presentation/leveraging-the-synergies-between-multiphoton-and-fluorescence-lifetime-imaging-microscopy/13324-21/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/3049673/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/defense-commercial-sensing/presentation/hollow-core-fibers-for-gas-filled-raman-lasers/13452-19/
+✅ dynamic  (1) | p(dynamic): 0.989 | https://spie.org/medical-imaging/presentation/topological-data-analysis-of-coronary-artery-calcifications-detected-on-non/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/dcs/myschedule/add/3055399/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/pw/myschedule/add/3043449/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/avr/myschedule/add/3041240/
+✅ dynamic  (1) | p(dynamic): 0.882 | https://www.spie.org/community-support/equity-diversity-inclusion/women-in-optics/2013-wio-planner/peck-alison/
+✅ dynamic  (1) | p(dynamic): 0.936 | https://spie.org/news/is-there-a-badge-for-refractive-optics/
+❌ dynamic  (1) | p(dynamic): 0.913 | https://www.spie.org/about-spie/
+✅ dynamic  (1) | p(dynamic): 0.977 | https://spie.org/defense-commercial-sensing/presentation/investigation-of-long-range-3d-imaging-and-range-finding-for/
+✅ static   (0) | p(dynamic): 0.043 | https://spie.org/education/courses/
+✅ dynamic  (1) | p(dynamic): 0.887 | https://spie.org/community-support/equity-diversity-inclusion/women-in-optics/2015-wio-planner/garcia-martinez-pascuala/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/pw/myschedule/add/3041401/presentation/
+✅ dynamic  (1) | p(dynamic): 0.994 | https://spie.org/photonics-west/presentation/differential-contrast-comparison-between-monochrome-and-pseudo-he-fresh-tissue/
+✅ static   (0) | p(dynamic): 0.052 | https://spie.org/pw/myschedule/add/7100536/specialevent/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/defense-commercial-sensing/presentation/an-evaluation-of-chernoff-fusion-with-fibonacci-points/13479-22/
+✅ dynamic  (1) | p(dynamic): 0.995 | https://spie.org/photonics-west/presentation/visualizing-cellular-metabolic-activity-within-the-cochlea-using-dynamic-micro/
+
+[taylor1791@korolev:~/works/32.20.path-wildcard-inference/00-trainer]$ ./bin/train.py
+Using features: ['length', 'uniqueCharacterRatio', 'percentLetters', 'percentDigits', 'percentSpecial', 'normalizedEntropy', 'strengthEntropy', 'longestDigitRun', 'longestLetterRun', 'longestSymbolRun', 'longestAlphanumericRun']
+🔍 Checking for NaNs in features...
+
+
+📊 Accuracy: 0.9478390461997019
+
+🧾 Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.94      0.86      0.90       892
+           1       0.95      0.98      0.96      2463
+
+    accuracy                           0.95      3355
+   macro avg       0.94      0.92      0.93      3355
+weighted avg       0.95      0.95      0.95      3355
+
+🧮 Intercept: -0.16350233176470566
+length                    0.0696
+uniqueCharacterRatio      5.2693
+percentLetters            -1.9537
+percentDigits             2.8882
+percentSpecial            2.1086
+normalizedEntropy         0.9123
+strengthEntropy           0.2770
+longestDigitRun           2.6301
+longestLetterRun          -4.6612
+longestSymbolRun          4.7226
+longestAlphanumericRun    -2.4776
+
+🔮 Predictions on 25 random examples:
+
+✅ dynamic  (1) | p(dynamic): 0.977 | https://spie.org/courses/sc101-c/introduction-to-microlithography-chemistry-materials-and-processing/
+✅ dynamic  (1) | p(dynamic): 0.994 | https://spie.org/medical-imaging/presentation/sentineladvmedical--toward-adversarial-attacks-detection-on-medical-image-classification/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/photonics-west/presentation/towards-ultradeep-widefield-coherent-nonlinear-optical-microscopy/13327-18/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/3057215/
+✅ dynamic  (1) | p(dynamic): 0.991 | https://www.spie.org/ar-vr-mr/event/evolution-and-technology-forces-shaping-women-s-roles-and-opportunities/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/dcs/myschedule/add/3053484/presentation/
+✅ dynamic  (1) | p(dynamic): 0.990 | https://spie.org/photonics-west/presentation/quantum-efficiency-dependence-on-semiconductor-2d-dopants-in-tmdc-mos2/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/photonics-west/presentation/cross-dispersion-setup-for-an-integrated-near-ir-astrophotonic-spectrograph/13373-11/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://www.spie.org/avr/myschedule/add/3040685/
+✅ dynamic  (1) | p(dynamic): 0.986 | https://spie.org/photonics-west/presentation/100w-c-band-amplifiers-for-tbit-s-satellite-links/
+✅ static   (0) | p(dynamic): 0.034 | https://spie.org/pw/myschedule/add/3043246/presentation/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/medical-imaging/presentation/enhancing-radiological-assessment-of-dust-diseases--evaluating-the-impact/13409-31/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/photonics-west/presentation/microscopic-analytical-solution-to-the-anisotropic-diffusion-equation/pc13320-27/
+✅ dynamic  (1) | p(dynamic): 0.764 | https://spie.org/community-support/equity-diversity-inclusion/women-in-optics/2021-wio-planner/preeti-jagadev/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/3040919/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/photonics-west/presentation/the-utah-optrode-array-for-large-volume-optogenetic-manipulation-in/pc13304-501/
+✅ dynamic  (1) | p(dynamic): 0.998 | https://spie.org/news/muyinatu-bell-appointed-as-the-next-editor-in-chief-of-the-journal-of-biomedical-optics/
+❌ dynamic  (1) | p(dynamic): 0.941 | https://spie.org/conferences-and-exhibitions/optics-and-photonics/program/browse-the-call-for-papers/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/defense-commercial-sensing/presentation/adaptive-thermal-signature-generation-for-real-time-decoy-creation-in/13469-73/
+✅ dynamic  (1) | p(dynamic): 0.959 | https://spie.org/defense-commercial-sensing/presentation/early-results-from-the-tanager-hyperspectral-mission/
+✅ dynamic  (1) | p(dynamic): 0.999 | https://spie.org/pw/myschedule/add/3047433/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/medical-imaging/presentation/multilabel-learning-and-model-visualization-for-reliable-head-and-neck/13407-13/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/pw/myschedule/add/4100207/
+✅ dynamic  (1) | p(dynamic): 0.695 | https://spie.org/conferences-and-exhibitions/photonics-west/quantum-west/
+✅ dynamic  (1) | p(dynamic): 1.000 | https://spie.org/medical-imaging/presentation/rapid-automated-prediction-of-post-stroke-cognitive-impairment-for-ischemic/13407-71/
