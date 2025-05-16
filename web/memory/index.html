@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chunked Memory Allocator</title>
+</head>
+<body>
+  <script>
+    // Parse strings like "1.5G", "10M", "512K", or plain bytes.
+    function parseSize(str) {
+      const units = {
+        k: 1024,
+        m: 1024 ** 2,
+        g: 1024 ** 3,
+        t: 1024 ** 4,
+        p: 1024 ** 5
+      };
+      const m = /^(\d+(?:\.\d+)?)([kmgtp])?b?$/i.exec(str.trim());
+      if (!m) throw new Error('Invalid size format: ' + str);
+      const num = parseFloat(m[1]);
+      const unit = m[2] && m[2].toLowerCase();
+      return unit ? Math.floor(num * units[unit]) : Math.floor(num);
+    }
+
+    const MAX_CHUNK_SIZE = 100 * 1024 ** 2; // 100 MiB
+
+    const params = new URLSearchParams(window.location.search);
+    const sizeParam = params.get('size');
+
+    if (!sizeParam) {
+      document.body.textContent =
+        'Usage: append ?size=<number>[K|M|G|T|P] (e.g. ?size=300M)';
+    } else {
+      try {
+        const totalBytes = parseSize(sizeParam);
+
+        window.chunks = [];
+        let allocated = 0;
+
+        while (allocated < totalBytes) {
+          const chunkSize = Math.min(MAX_CHUNK_SIZE, totalBytes - allocated);
+          const chunk = new Uint8Array(chunkSize);
+          chunk.fill(0);  // touch memory
+          window.chunks.push(chunk);
+          allocated += chunkSize;
+        }
+
+        document.body.innerHTML = `
+          ✅ Allocated ${totalBytes.toLocaleString()} bytes (${sizeParam})<br>
+          Split into ${window.chunks.length} chunk(s), each ≤100 MiB.
+        `;
+      } catch (err) {
+        document.body.textContent = '❌ ' + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
