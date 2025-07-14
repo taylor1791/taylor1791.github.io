@@ -1,0 +1,147 @@
+const predict = logistic({
+  intercept: -0.1635,
+
+  length: 0.0696,
+  uniqueCharacterRatio: 5.2693,
+  percentLetters: -1.9537,
+  percentDigits: 2.8882,
+  percentSpecial: 2.1086,
+  normalizedEntropy: 0.9123,
+  strengthEntropy: 0.2770,
+  longestDigitRun: 2.6301,
+  longestLetterRun: -4.6612,
+  longestSymbolRun: 4.7226,
+  longestAlphanumericRun: -2.4776
+});
+
+const parsed = new URL(url());
+const segments = parsed.pathname.replace(/^\//, "").replace(/\/$/, "").split("/");
+
+return segments.map((segment) => {
+  const features = extract(segment);
+  const { probability } = props.predict(features);
+
+  return `p(${segment} is dynamic): ${probability}`;
+});
+
+
+export function logistic<T extends Record<string, number>>(weights: T & { intercept: number }) {
+  return function (features: Omit<T, "intercept">): { probability: number; prediction: 0 | 1 } {
+    let z = weights.intercept;
+
+    for (const key in features) {
+      z += features[key] * weights[key];
+    }
+
+    const probability = sigmoid(z);
+    const prediction = probability >= 0.5 ? 1 : 0;
+
+    return { probability, prediction };
+  };
+}
+
+function sigmoid(z: number) {
+  return 1 / (1 + Math.exp(-z));
+}
+
+export function extract(path: string): Features {
+  const length = path.length;
+  const digitCount = (path.match(/\d/g) || []).length;
+  const letterCount = (path.match(/[a-zA-Z]/g) || []).length;
+  const specialCount = length - digitCount - letterCount;
+  const uniqueCount = new Set(path).size;
+
+  return {
+    length,
+    uniqueCharacterRatio: limit(uniqueCount / length),
+    percentLetters: limit(letterCount / length),
+    percentDigits: limit(digitCount / length),
+    percentSpecial: limit(specialCount / length),
+    normalizedEntropy: limit(shannonEntropy(path) / Math.log2(uniqueCount)),
+    strengthEntropy: limit(shannonEntropy(path) / Math.log2(length)),
+    ...runFeatures(path),
+  };
+
+  function limit(value: number) {
+    if (isNaN(value)) return 0;
+
+    return path.length === 0 ? 0 : value;
+  }
+
+  function shannonEntropy(str: string) {
+    const len = str.length;
+    if (len === 0) return 0;
+
+    const counts = new Map();
+    for (const char of str) {
+      counts.set(char, (counts.get(char) || 0) + 1);
+    }
+
+    let entropy = 0;
+    for (const count of counts.values()) {
+      const p = count / len;
+      entropy -= p * Math.log2(p);
+    }
+
+    return entropy;
+  }
+
+  function runFeatures(str: string): {
+      longestDigitRun: number;
+      longestLetterRun: number;
+      longestSymbolRun: number;
+      longestAlphanumericRun: number;
+  } {
+    let digitSequences = [],
+      currentDigitRun = "";
+    let symbolSequences = [],
+      currentSymbolRun = "";
+    let letterSequences = [],
+      currentLetterRun = "";
+    let alphanumericSequences = [],
+      currentAlphanumericRun = "";
+
+    for (let i = 0; i <= str.length; i++) {
+      const c = str[i] || ""; // Sentinel at end to flush final runs
+
+      // --- Digit run logic ---
+      if (/\d/.test(c)) {
+        currentDigitRun += c;
+      } else if (currentDigitRun.length > 0) {
+        digitSequences.push(currentDigitRun);
+        currentDigitRun = "";
+      }
+
+      // --- Letter run logic ---
+      if (/[a-zA-Z]/.test(c)) {
+        currentLetterRun += c;
+      } else if (currentLetterRun.length > 0) {
+        letterSequences.push(currentLetterRun);
+        currentLetterRun = "";
+      }
+
+      // --- Symbol run logic ---
+      if (/[^a-zA-Z0-9\s]/.test(c)) {
+        currentSymbolRun += c;
+      } else if (currentSymbolRun.length > 0) {
+        symbolSequences.push(currentSymbolRun);
+        currentSymbolRun = "";
+      }
+
+      // --- Alphanumeric run logic ---
+      if (/[a-zA-Z0-9]/.test(c)) {
+        currentAlphanumericRun += c;
+      } else if (currentAlphanumericRun.length > 0) {
+        alphanumericSequences.push(currentAlphanumericRun);
+        currentAlphanumericRun = "";
+      }
+    }
+
+    return {
+      longestDigitRun: limit(Math.max(...digitSequences.map(s => s.length), 0) / length),
+      longestLetterRun: limit(Math.max(...letterSequences.map(s => s.length), 0) / length),
+      longestSymbolRun: limit(Math.max(...symbolSequences.map(s => s.length), 0) / length),
+      longestAlphanumericRun: limit(Math.max(...alphanumericSequences.map(s => s.length), 0) / length),
+    };
+  }
+}
