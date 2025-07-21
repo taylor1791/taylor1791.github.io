@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Periodic Self-Fetching Page</title>
+</head>
+<body>
+  <h1>Self-Fetching Page</h1>
+  <p>
+    Open your browser's developer console to see periodic fetch requests. Change the
+    periodicity using the <code>interval</code> query parameter in the URL. Example
+    <a href="?interval=1,2,3"><code>?interval=1,2,3</code></a> will fetch every 1
+    second, then 2 seconds, then 3 seconds, and repeat.
+  </p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get("interval");
+
+    let intervals = [1]; // Default to 1 second
+    if (raw) {
+      const parsed = raw.split(',')
+                        .map(s => parseFloat(s.trim()))
+                        .filter(n => !isNaN(n) && n > 0);
+
+      if (parsed.length > 0) {
+        intervals = parsed;
+      }
+    }
+
+    let index = 0;
+
+    function fetchSelf() {
+      const now = new Date().toISOString();
+      console.log(`Fetching at ${now} (interval: ${intervals[index]}s)`);
+
+      fetch(window.location.href).catch(err => {
+        console.error("Fetch failed:", err);
+      });
+
+      index = (index + 1) % intervals.length;
+      setTimeout(fetchSelf, intervals[index] * 1000);
+    }
+
+    console.log(`Starting periodic fetch with intervals: ${intervals.join(', ')} seconds`);
+    setTimeout(fetchSelf, intervals[0] * 1000);
+  </script>
+</body>
+</html>
