@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneTrust SDK Test</title>
+</head>
+<body>
+    <h1>OneTrust SDK Methods</h1>
+    <p>Open developer console to see available methods</p>
+
+    <script>
+        // Mock OneTrust SDK object
+        window.OneTrust = {
+            csEvent: function() {
+                throw new Error('csEvent method failed: Service unavailable');
+            },
+            useGeoLocationService: function() {
+                throw new Error('useGeoLocationService method failed: Location access denied');
+            },
+            FetchAndDownloadPC: function() {
+                throw new Error('FetchAndDownloadPC method failed: Network timeout');
+            },
+            changeLanguage: function() {
+                throw new Error('changeLanguage method failed: Invalid locale configuration');
+            },
+            testLog: function() {
+                throw new Error('testLog method failed: Logging service unreachable');
+            },
+            UpdateConsent: function() {
+                throw new Error('UpdateConsent method failed: Consent service error');
+            },
+            IsVendorServiceEnabled: function() {
+                throw new Error('IsVendorServiceEnabled method failed: Vendor service unavailable');
+            },
+            UpdateGCM: function() {
+                throw new Error('UpdateGCM method failed: GCM service connection failed');
+            },
+            getDataSubjectId: function() {
+                throw new Error('getDataSubjectId method failed: Identity service error');
+            },
+            setConsentProfile: function() {
+                throw new Error('setConsentProfile method failed: Profile service unavailable');
+            },
+            setDataSubjectId: function() {
+                throw new Error('setDataSubjectId method failed: Invalid subject identifier');
+            },
+            SendReceipt: function() {
+                throw new Error('SendReceipt method failed: Receipt service timeout');
+            }
+        };
+
+        // Log all available methods to console
+        console.log('OneTrust SDK methods available:');
+        Object.keys(window.OneTrust).forEach(method => {
+            console.log(method, typeof window.OneTrust[method]);
+        });
+    </script>
+</body>
+</html>
