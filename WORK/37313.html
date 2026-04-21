@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WORK-37313: failureType Test Page</title>
+  </head>
+  <body>
+    <h1>failureType Test Page</h1>
+    <p>
+      This page is used to test failureType classification on web journey action
+      results.
+    </p>
+
+    <h2>Query Parameters</h2>
+    <ul>
+      <li>
+        <code>?chaos=loop&amp;delay=3000</code> &mdash; Blocks the main thread
+        after a delay (triggers SCREENSHOTCOLLECTIONERROR)
+      </li>
+      <li>
+        <code>?chaos=datalayer</code> &mdash; Poisons window.dataLayer getter
+        (triggers DATALAYERCOLLECTIONERROR)
+      </li>
+      <li>No params &mdash; Normal page with cookies and dataLayer</li>
+    </ul>
+
+    <p id="status">Ready</p>
+
+    <script>
+      // Set a cookie so cookie collection has something to find
+      document.cookie = "work37313_test=active; path=/; max-age=3600";
+
+      // Set a valid dataLayer
+      window.dataLayer = [{ event: "pageLoad", testId: "WORK-37313" }];
+
+      var params = new URLSearchParams(window.location.search);
+      var chaos = params.get("chaos");
+      var delay = parseInt(params.get("delay"), 10) || 3000;
+
+      if (chaos === "loop") {
+        document.getElementById("status").textContent =
+          "Chaos mode: loop (blocking main thread in " + delay + "ms)";
+        setTimeout(function () {
+          while (true) {}
+        }, delay);
+      }
+
+      if (chaos === "datalayer") {
+        document.getElementById("status").textContent =
+          "Chaos mode: datalayer (getter will throw)";
+        Object.defineProperty(window, "dataLayer", {
+          get: function () {
+            throw new Error("dataLayer poisoned by WORK-37313 test page");
+          },
+          configurable: false,
+        });
+      }
+    </script>
+  </body>
+</html>
