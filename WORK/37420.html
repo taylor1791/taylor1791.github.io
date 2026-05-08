@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WORK-37420: URL Redirect Test Page</title>
+  </head>
+  <body>
+    <h1>URL Redirect Test Page</h1>
+    <p>
+      This page renders any URLs passed via query params as links and can
+      optionally redirect to the first URL after a delay.
+    </p>
+
+    <h2>Query Parameters</h2>
+    <ul>
+      <li>
+        <code>?url=https://example.com</code> &mdash; Adds a link to the page.
+        Repeatable (e.g. <code>?url=A&amp;url=B</code>).
+      </li>
+      <li>
+        <code>?redirect=3000</code> &mdash; Redirects to the first
+        <code>url</code> after the given number of milliseconds.
+      </li>
+    </ul>
+
+    <h2>Links</h2>
+    <ul id="links"></ul>
+
+    <p id="status">Ready</p>
+
+    <script>
+      var params = new URLSearchParams(window.location.search);
+      var urls = params.getAll("url");
+      var redirect = parseInt(params.get("redirect"), 10);
+
+      var list = document.getElementById("links");
+      urls.forEach(function (url) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = url;
+        a.textContent = url;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+
+      if (!isNaN(redirect) && urls.length > 0) {
+        document.getElementById("status").textContent =
+          "Redirecting to " + urls[0] + " in " + redirect + "ms";
+        setTimeout(function () {
+          window.location.href = urls[0];
+        }, redirect);
+      }
+    </script>
+  </body>
+</html>
