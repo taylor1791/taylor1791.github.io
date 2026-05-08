@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://taylor1791.github.io/WORK/sitemap.xml
